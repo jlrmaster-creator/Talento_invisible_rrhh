@@ -27,7 +27,7 @@ export const HomeScreen = () => {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Button
             size="lg"
-            className="bg-white text-indigo-700 hover:bg-indigo-50 focus-visible:outline-white"
+            className="!bg-white !text-indigo-700 hover:!bg-indigo-50 focus-visible:!outline-white"
             onClick={() => navigate('assessment')}
           >
             {answers.length > 0 ? 'Continuar evaluación' : 'Empezar evaluación'}
