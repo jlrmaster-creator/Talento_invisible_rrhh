@@ -1,0 +1,242 @@
+# Prompt profesional: Talento Invisible — MVP sencillo e independiente de IA
+
+## 1. Contexto y rol
+
+Actúa como desarrollador sénior especializado en aplicaciones web progresivas (PWA), tecnologías open source, seguridad y experiencia de usuario.
+
+Desarrolla **Talento Invisible**, una aplicación web móvil que permita descubrir, evaluar y visualizar habilidades profesionales que habitualmente no aparecen en un currículum.
+
+El objetivo es crear un MVP funcional, atractivo, sencillo de mantener y fácil de desplegar, evitando complejidad técnica innecesaria.
+
+## 2. Tecnologías y arquitectura obligatorias
+
+Utiliza exclusivamente las siguientes tecnologías:
+
+- **Frontend:** React, TypeScript y Vite.
+- **Diseño:** Tailwind CSS.
+- **Aplicación móvil web:** PWA instalable y responsive.
+- **Autenticación:** Firebase Authentication.
+- **Seguridad:** controles de autorización en la aplicación y Firebase Security Rules únicamente cuando exista un recurso compatible que las requiera.
+- **Generación de PDF:** jsPDF y jsPDF-AutoTable.
+- **Almacenamiento local:** localStorage o IndexedDB para guardar los datos necesarios en el dispositivo, con las precauciones de privacidad correspondientes.
+- **Despliegue:** hosting estático compatible con aplicaciones web.
+
+### Restricciones importantes
+
+Firebase se utilizará exclusivamente para:
+
+1. Firebase Authentication, para registrar e identificar a las personas usuarias.
+2. Security Rules, únicamente si se incorpora algún servicio compatible que las necesite.
+
+**No utilizar ningún otro producto de Firebase.** Quedan excluidos Firestore, Realtime Database, Firebase Storage, Cloud Functions, Firebase Hosting, Analytics, Remote Config y cualquier otro servicio de Firebase.
+
+No desarrollar un backend propio ni depender de servidores para ejecutar la lógica principal.
+
+No utilizar inteligencia artificial, modelos de lenguaje, APIs de IA ni servicios externos de análisis inteligente.
+
+La aplicación debe funcionar con lógica determinista en TypeScript y, siempre que sea posible, permitir realizar la evaluación y generar los informes sin conexión.
+
+## 3. Funcionalidades principales
+
+### A. Acceso y perfil
+
+- Registro e inicio de sesión mediante Firebase Authentication.
+- Perfil básico con información profesional opcional.
+- Acceso sencillo y navegación intuitiva.
+- Gestión de sesión y cierre de sesión.
+- No solicitar información personal innecesaria.
+
+### B. Evaluación de habilidades
+
+Crear una evaluación breve, de entre 10 y 15 preguntas o retos interactivos.
+
+Evaluar competencias como:
+
+- Resolución de problemas.
+- Organización y planificación.
+- Comunicación.
+- Colaboración.
+- Adaptabilidad.
+- Aprendizaje autónomo.
+- Atención al detalle.
+- Orientación al cliente.
+- Iniciativa.
+- Creatividad práctica.
+
+Las preguntas deben ser claras, inclusivas y fáciles de responder desde un móvil.
+
+### C. Motor de evaluación sin IA
+
+Implementar un sistema determinista de puntuación mediante reglas y fórmulas transparentes en TypeScript.
+
+- Asociar cada respuesta con una o varias competencias.
+- Calcular puntuaciones utilizando pesos configurables.
+- Mostrar fortalezas y áreas de desarrollo.
+- Explicar de forma comprensible cómo se obtienen los resultados.
+- Evitar presentar los resultados como diagnósticos o verdades absolutas.
+- Permitir modificar preguntas, pesos y criterios sin rehacer la arquitectura.
+
+### D. Mapa de talento
+
+Mostrar un resumen visual de las competencias detectadas, con niveles orientativos y ejemplos de las respuestas que respaldan cada resultado.
+
+Incluir:
+
+- Principales fortalezas.
+- Habilidades complementarias.
+- Áreas que se pueden desarrollar.
+- Recomendaciones profesionales predefinidas.
+- Un pequeño plan de desarrollo personal.
+
+Las recomendaciones deben proceder de un catálogo estático configurable, sin generación mediante IA.
+
+### E. Generación de informes PDF
+
+Generar los documentos directamente en el navegador.
+
+**Informe personal: «Mi mapa de talento»**
+
+Debe incluir las competencias destacadas, resultados, fortalezas, recomendaciones y plan de desarrollo.
+
+**Informe profesional para RR. HH.**
+
+Debe ofrecer un resumen estructurado de las competencias y las evidencias asociadas, con lenguaje profesional y neutral.
+
+La generación del segundo informe debe estar protegida por controles de acceso y consentimiento explícito de la persona participante.
+
+No enviar automáticamente resultados personales a una empresa. En esta primera versión, permitir que la persona descargue y comparta voluntariamente su informe.
+
+### F. Persistencia de datos
+
+Como no se utilizará una base de datos remota, almacenar los datos de evaluación en el dispositivo mediante localStorage o IndexedDB.
+
+- Guardar solo los datos estrictamente necesarios.
+- Permitir eliminar los resultados guardados.
+- Informar de que los datos se almacenan localmente.
+- No asumir que los datos locales se sincronizan entre dispositivos.
+- No utilizar los resultados como mecanismo de autenticación o autorización.
+
+La autenticación y el almacenamiento de evaluaciones son funcionalidades independientes: iniciar sesión con Firebase Authentication no implica que los resultados se guarden en Firebase.
+
+## 4. Seguridad y privacidad
+
+- Aplicar buenas prácticas de seguridad en React y TypeScript.
+- Separar claramente autenticación, autorización y almacenamiento local.
+- No incluir secretos ni credenciales privadas en el frontend.
+- No confiar en datos del navegador para conceder permisos privilegiados.
+- No implementar un panel empresarial con acceso a evaluaciones de otras personas, porque no existe una base de datos o backend que permita gestionarlo de forma segura.
+- Explicar las limitaciones de la arquitectura y no simular una protección que no existe.
+- Incorporar información de privacidad, consentimiento y eliminación de datos.
+- Diseñar el producto conforme a los principios de minimización de datos y privacidad desde el diseño, teniendo en cuenta el RGPD.
+
+**Importante:** Firebase Security Rules no protegen por sí solas los datos guardados en localStorage o IndexedDB. Si en el futuro se requiere compartir resultados de forma segura con RR. HH., habrá que añadir un servicio de almacenamiento con controles de acceso reales y reglas de seguridad compatibles. Esto queda fuera del MVP actual.
+
+## 5. Diseño y experiencia de usuario
+
+La interfaz debe ser:
+
+- Moderna, limpia y profesional.
+- Amigable y accesible.
+- Mobile-first.
+- Fácil de utilizar sin conocimientos técnicos.
+- Compatible con móvil, tablet y escritorio.
+- Coherente en colores, tipografía, iconos y componentes.
+- Clara al presentar puntuaciones y recomendaciones.
+
+Evitar pantallas innecesarias, formularios extensos y funciones que no sean esenciales para el MVP.
+
+## 6. Estructura sencilla del proyecto
+
+Organizar el código de forma modular, sin sobrearquitectura.
+
+Separar, como mínimo:
+
+- Componentes de interfaz.
+- Pantallas y navegación.
+- Preguntas y configuración de competencias.
+- Motor de puntuación.
+- Autenticación.
+- Persistencia local.
+- Generación de PDF.
+- Estilos y recursos.
+
+## 7. Pruebas y entrega
+
+Entregar una aplicación ejecutable y no solamente una maqueta visual.
+
+Incluir:
+
+- Código fuente completo.
+- Archivo README con instalación y ejecución.
+- Variables de configuración necesarias para Firebase Authentication.
+- Instrucciones para configurar el proveedor de autenticación.
+- Pruebas del cálculo de puntuaciones.
+- Pruebas de generación de informes.
+- Instrucciones para compilar y desplegar la PWA.
+- Datos de demostración ficticios.
+- Lista clara de las limitaciones conocidas.
+
+No añadir dependencias ni servicios externos que no sean imprescindibles.
+
+## 8. Criterios de aceptación
+
+El MVP estará terminado cuando:
+
+1. La aplicación funcione correctamente en móvil y escritorio.
+2. Una persona pueda registrarse e iniciar sesión con Firebase Authentication.
+3. La evaluación pueda completarse sin utilizar IA.
+4. Los resultados se calculen mediante reglas deterministas reproducibles.
+5. Se visualice un mapa de talento con fortalezas y áreas de desarrollo.
+6. Se puedan generar y descargar los dos tipos de PDF.
+7. Los resultados se puedan guardar y eliminar localmente.
+8. La aplicación no dependa de una base de datos remota ni de un backend propio.
+9. No se utilicen productos de Firebase distintos de Authentication y, cuando proceda, Security Rules.
+10. Se documenten con claridad las limitaciones relacionadas con el almacenamiento local y el intercambio de informes.
+
+## 9. Instrucción final
+
+Prioriza una solución funcional, pequeña, segura y mantenible.
+
+No añadas funcionalidades por anticipado. No introduzcas IA, backend, bases de datos remotas ni servicios adicionales de Firebase.
+
+Si una funcionalidad requiere infraestructura no permitida por estas especificaciones, explica la limitación y ofrece una alternativa compatible con el MVP.
+
+Antes de terminar, verifica que el proyecto cumple todas las restricciones y que no contiene dependencias de servicios excluidos.
+
+
+## Despliegue y publicación en GitHub Pages
+
+La aplicación se alojará en **GitHub Pages**, utilizando un repositorio de GitHub y un proceso automatizado de publicación con GitHub Actions.
+
+### Requisitos técnicos
+
+- Utilizar React, TypeScript y Vite.
+- Configurar correctamente `base` en `vite.config.ts` para que funcione tanto en un dominio personalizado como en una URL de proyecto de GitHub Pages.
+- Automatizar la compilación y publicación mediante GitHub Actions.
+- Guardar el archivo de workflow en `.github/workflows/deploy.yml`.
+- Publicar únicamente los archivos estáticos generados en `dist/`.
+- Configurar correctamente la navegación de la SPA para evitar errores al recargar páginas internas.
+- Comprobar que los recursos, estilos, iconos y archivos de la PWA se cargan correctamente desde la URL del repositorio.
+- Documentar cómo configurar el repositorio y activar GitHub Pages.
+- No utilizar Firebase Hosting ni ningún otro servicio de alojamiento de Firebase.
+
+### Autenticación y configuración
+
+- Utilizar Firebase exclusivamente para Firebase Authentication y, cuando proceda, sus Security Rules.
+- Configurar los dominios autorizados necesarios para Firebase Authentication, incluyendo el dominio de GitHub Pages que corresponda.
+- Utilizar únicamente la configuración pública del cliente Firebase en el frontend; nunca incluir credenciales privadas.
+- Explicar que la configuración de Firebase debe realizarse manualmente desde la consola correspondiente.
+- No incorporar servicios de base de datos, backend ni almacenamiento remoto.
+
+### Seguridad y mantenimiento
+
+- Mantener el repositorio organizado y documentado.
+- Incluir instrucciones para ejecutar la aplicación localmente, compilarla y desplegarla.
+- Configurar GitHub Actions con los permisos mínimos necesarios para publicar.
+- No incluir archivos `.env` con información sensible en el repositorio.
+- Recordar que GitHub Pages es un alojamiento estático: no ejecuta un backend ni protege datos locales.
+- Verificar la autenticación, la generación de PDF, el funcionamiento de la PWA y las rutas después del despliegue.
+
+### Criterio de aceptación adicional
+
+La aplicación debe poder desplegarse desde el repositorio de GitHub mediante GitHub Actions y funcionar en la URL pública de GitHub Pages, sin servidor propio, sin base de datos remota y sin depender de inteligencia artificial.
