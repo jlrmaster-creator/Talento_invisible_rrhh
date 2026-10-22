@@ -23,7 +23,7 @@ export const CONSENT_TEXT =
 
 export const ReportsScreen = () => {
   const { navigate } = useNavigate();
-  const { answers, completedAt, history, restoreFrom } = useAssessment();
+  const { answers, completedAt, history } = useAssessment();
   const { isAuthenticated, mode } = useAuth();
 
   const [consent, setConsent] = useState<StoredConsent>(() => {
@@ -36,7 +36,10 @@ export const ReportsScreen = () => {
   const [authorise, setAuthorise] = useState(false);
   const [confirmIdentity, setConfirmIdentity] = useState(false);
   const [busy, setBusy] = useState<string | null>(null);
-  const [selectedHistoryId, setSelectedHistoryId] = useState<string | null>(null);
+  const [selectedHistoryId, setSelectedHistoryId] = useState<string | null>(() =>
+    // Si no hay evaluación actual, se usa la entrada más reciente del historial.
+    answers.length > 0 ? null : history[0]?.id ?? null,
+  );
 
   const result = useMemo(() => {
     if (selectedHistoryId) {
@@ -129,13 +132,7 @@ export const ReportsScreen = () => {
             value={selectedHistoryId ?? 'current'}
             onChange={(event) => {
               const value = event.target.value;
-              if (value === 'current') {
-                setSelectedHistoryId(null);
-              } else {
-                setSelectedHistoryId(value);
-                const entry = history.find((item) => item.id === value);
-                if (entry) restoreFrom(entry);
-              }
+              setSelectedHistoryId(value === 'current' ? null : value);
             }}
           >
             {answers.length > 0 ? (
