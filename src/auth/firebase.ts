@@ -9,7 +9,7 @@
  * Firebase es pública por diseno y la seguridad la proporcionan las Security Rules
  * y los dominios autorizados del proveedor.
  *
- * Si las variables no estan definidas, la aplicacion arranca en "modo local":
+ * Si las variables no estan definidas, la aplicación arranca en "modo local":
  * funciona igual, pero sin identificación. Esto permite desarrollar y
  * demostrar la app antes de conectar Firebase.
  */

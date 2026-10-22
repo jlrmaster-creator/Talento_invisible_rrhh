@@ -13,7 +13,7 @@ import { downloadBlob, generateHRReport, generatePersonalReport, safeFilename } 
 import { buildResult } from '../engine/result';
 import { clearConsent, loadConsent, loadProfile, saveConsent, type StoredConsent } from '../storage/localStorage';
 
-/** Version del texto de consentimiento. Si cambia, hay que volver a consentir. */
+/** Versión del texto de consentimiento. Si cambia, hay que volver a consentir. */
 export const CONSENT_VERSION = '1.0.0';
 
 export const CONSENT_TEXT =
@@ -28,7 +28,7 @@ export const ReportsScreen = () => {
 
   const [consent, setConsent] = useState<StoredConsent>(() => {
     const stored = loadConsent();
-    // Un consentimiento aceptado con una version anterior del texto no vale.
+    // Un consentimiento aceptado con una versión anterior del texto no vale.
     return stored.granted && stored.version !== CONSENT_VERSION ? { granted: false } : stored;
   });
   const [profile] = useState(() => loadProfile());

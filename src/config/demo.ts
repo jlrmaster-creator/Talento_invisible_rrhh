@@ -3,7 +3,7 @@
  *
  * Perfil de una persona imaginaria: "Marta", que ha trabajado siempre en
  * cuidados y atención al cliente y llega al cuestionario con mucha
- * experiencia de vida pero sin títulos formales. Sirve para probar la aplicacion
+ * experiencia de vida pero sin títulos formales. Sirve para probar la aplicación
  * sin tener que responder las 15 preguntas.
  *
  * Ninguno de estos datos es real.

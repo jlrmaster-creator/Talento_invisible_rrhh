@@ -1,5 +1,5 @@
 /**
- * Enrutador minimo basado en hash.
+ * Enrutador mínimo basado en hash.
  *
  * Se usa hash en lugar de History API porque GitHub Pages sirve archivos
  * estaticos: con hash, cualquier ruta interna funciona al recargar la página

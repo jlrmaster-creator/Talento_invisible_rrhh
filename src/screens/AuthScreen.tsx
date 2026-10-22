@@ -148,7 +148,7 @@ export const AuthScreen = () => {
           </Field>
 
           <Field
-            label="Contrasena"
+            label="Contraseña"
             htmlFor="password"
             hint={tab === 'signup' ? 'Mínimo 6 caracteres.' : undefined}
           >

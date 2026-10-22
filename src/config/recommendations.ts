@@ -75,7 +75,7 @@ export const RECOMMENDATIONS: Recommendation[] = [
     action:
       'Usa una sola lista con tres columnas (pendiente, en curso, hecho) y revísala a fin de semana durante cuatro semanas.',
     rationale:
-      'Hay margen de mejora en la parte organizativa. Un método minimo y constante suele funcionar mejor que un sistema complejo.',
+      'Hay margen de mejora en la parte organizativa. Un método mínimo y constante suele funcionar mejor que un sistema complejo.',
   },
   {
     id: 'pl-complementary',

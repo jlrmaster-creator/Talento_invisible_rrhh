@@ -18,9 +18,9 @@ export interface Evidence {
   answerLabel: string;
   /** Aporte de esta respuesta a la competencia (ya normalizado y ponderado). */
   awarded: number;
-  /** Peso maximo que esta pregunta podria aportar. */
+  /** Peso máximo que esta pregunta podría aportar. */
   possible: number;
-  /** Comentario explicativo de la opcion, si existe. */
+  /** Comentario explicativo de la opción, si existe. */
   note?: string;
 }
 
@@ -60,7 +60,7 @@ export interface TalentMap {
   overallLevelLabel: string;
   /** Resumen redactado con plantillas estaticas (sin IA). */
   summary: string;
-  /** Comprobacion de que el resultado se calculo con la version actual del cuestionario. */
+  /** Comprobacion de que el resultado se calculó con la versión actual del cuestionario. */
   questionnaireVersion: string;
 }
 

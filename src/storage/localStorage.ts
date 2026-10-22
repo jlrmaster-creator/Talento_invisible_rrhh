@@ -1,9 +1,9 @@
 /**
  * Persistencia local (localStorage).
  *
- * No hay base de datos remota. Todo lo que guarda la aplicacion vive en el
+ * No hay base de datos remota. Todo lo que guarda la aplicación vive en el
  * dispositivo de la persona usuaria y puede borrarse desde la propia
- * aplicacion. Se aplica minimizacion de datos: solo se guarda lo
+ * aplicación. Se aplica minimización de datos: solo se guarda lo
  * estrictamente necesario para poder mostrar resultados y generar informes.
  */
 
@@ -40,7 +40,7 @@ export interface StoredConsent {
   /** Consentimiento explícito para elaborar el informe profesional. */
   granted: boolean;
   grantedAt?: string;
-  /** Version del texto de consentimiento acceptance. */
+  /** Versión del texto de consentimiento aceptado. */
   version?: string;
 }
 
@@ -89,7 +89,7 @@ const removeKey = (key: string) => {
   try {
     window.localStorage.removeItem(key);
   } catch {
-    /* sin accion */
+    /* sin acción */
   }
 };
 
@@ -116,9 +116,9 @@ export const clearCurrentAssessment = () => removeKey(KEYS.assessment);
 // --- Progreso en curso ---
 
 /**
- * Guarda las respuestas de una evaluacion sin terminar.
+ * Guarda las respuestas de una evaluación sin terminar.
  *
- * Se mantiene separado de la evaluacion actual para no confundir un
+ * Se mantiene separado de la evaluación actual para no confundir un
  * cuestionario a medias con un resultado completo del historial.
  */
 export const saveProgress = (answers: Answer[]): boolean =>
@@ -176,8 +176,8 @@ export const clearConsent = () => removeKey(KEYS.consent);
 // --- Borrado completo ---
 
 /**
- * Borra todos los datos de la aplicacion del dispositivo.
- * Es la accion de "derecho al borrado" que describe la politica de privacidad.
+ * Borra todos los datos de la aplicación del dispositivo.
+ * Es la acción de "derecho al borrado" que describe la politica de privacidad.
  */
 export const clearAllData = (): void => {
   Object.values(KEYS).forEach(removeKey);

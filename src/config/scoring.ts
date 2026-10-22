@@ -79,7 +79,7 @@ export interface ScoringConfig {
   priorStrength: number;
   /** Umbrales para clasificar fortalezas y áreas de desarrollo. */
   bands: BandThresholds;
-  /** Version del cuestionario. Cambia al modificar preguntas o pesos. */
+  /** Versión del cuestionario. Cambia al modificar preguntas o pesos. */
   questionnaireVersion: string;
 }
 
