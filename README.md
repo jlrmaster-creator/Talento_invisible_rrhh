@@ -308,8 +308,8 @@ confirmación de identidad. El consentimiento se puede retirar en cualquier mome
 
 - **Minimización de datos**: el perfil profesional es opcional; la evaluación puede hacerse sin
   identificarse; no se piden datos sensibles.
-- **Almacenamiento local** (`localStorage`, prefijo `ti.v1`): respuestas, historial (máximo 10
-  evaluaciones), perfil opcional y registro de consentimiento.
+- **Almacenamiento local** (`localStorage`, prefijo `ti.v1`): respuestas, progreso del cuestionario,
+  historial (máximo 10 evaluaciones), perfil opcional y registro de consentimiento.
 - **Borrado completo** desde *Perfil → Borrar todos mis datos*. También se puede revocar el
   consentimiento por separado.
 - **Aviso explícito** en la interfaz de que los datos no se sincronizan entre dispositivos y de que
@@ -329,7 +329,7 @@ confirmación de identidad. El consentimiento se puede retirar en cualquier mome
 npm run test
 ```
 
-**64 pruebas** repartidas en:
+**65 pruebas** repartidas en:
 
 | Archivo | Qué comprueba |
 | --- | --- |
@@ -337,7 +337,7 @@ npm run test
 | `src/engine/talentMap.test.ts` | Clasificación en los tres bloques, bloques nunca vacíos, orden del ranking, redacción del resumen |
 | `src/engine/pdf.test.ts` | Cabecera `%PDF`, tamaño, marcador EOF, informe profesional, rechazo sin consentimiento, nombres de archivo |
 | `src/config/config.test.ts` | Integridad del banco (10–15 preguntas), unicidad, pesos válidos, cobertura de competencias, catálogo de recomendaciones |
-| `src/storage/localStorage.test.ts` | Guardado, historial limitado, borrado selectivo y total, consentimiento |
+| `src/storage/localStorage.test.ts` | Guardado, progreso en curso, historial limitado, borrado selectivo y total, consentimiento |
 | `src/App.test.tsx` | Montaje completo de la aplicación y navegación por hash |
 
 ---
