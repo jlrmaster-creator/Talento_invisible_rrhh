@@ -48,10 +48,9 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          # Si Pages aun no esta activado en el repositorio, lo activa con
-          # origen GitHub Actions (requiere el permiso pages: write).
-          enablement: true
+        # Nota: este paso no puede activar Pages por si solo con GITHUB_TOKEN.
+        # La primera vez hay que activarlo a mano en
+        # Settings > Pages > Build and deployment > Source: GitHub Actions.
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

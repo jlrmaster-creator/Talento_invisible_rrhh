@@ -79,6 +79,11 @@ export const AssessmentProvider = ({ children }: { children: ReactNode }) => {
     if (stored && Array.isArray(stored.answers)) {
       setAnswers(stored.answers);
       setCompletedAt(stored.completedAt);
+      const pending = QUESTIONS.findIndex(
+        (question) =>
+          !stored.answers.some((answer) => answer.questionId === question.id),
+      );
+      if (pending > 0) setCurrentIndex(pending);
     }
   }, []);
 

@@ -6,6 +6,7 @@ import { Card, CardTitle } from '../components/ui/Card';
 import { Alert } from '../components/ui/Alert';
 import { Field, TextInput } from '../components/ui/Field';
 import { Icon } from '../components/ui/Icon';
+import { loadProfile } from '../storage/localStorage';
 
 type Mode = 'signin' | 'signup';
 
@@ -19,6 +20,7 @@ export const AuthScreen = () => {
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [busy, setBusy] = useState(false);
+  const [profile] = useState(() => loadProfile());
 
   if (isAuthenticated) {
     return (
@@ -26,7 +28,9 @@ export const AuthScreen = () => {
         <Card>
           <CardTitle subtitle="Tu sesion esta activa">Sesion iniciada</CardTitle>
           <div className="rounded-xl bg-slate-50 p-4">
-            <p className="text-sm font-medium text-slate-900">{user?.displayName || 'Cuenta sin nombre'}</p>
+            <p className="text-sm font-medium text-slate-900">
+              {profile?.displayName || user?.displayName || 'Cuenta sin nombre'}
+            </p>
             <p className="text-sm text-slate-600">{user?.email}</p>
           </div>
           <div className="mt-5 flex flex-col gap-2 sm:flex-row">

@@ -26,7 +26,11 @@ export const ReportsScreen = () => {
   const { answers, completedAt, history, restoreFrom } = useAssessment();
   const { isAuthenticated, mode } = useAuth();
 
-  const [consent, setConsent] = useState<StoredConsent>(() => loadConsent());
+  const [consent, setConsent] = useState<StoredConsent>(() => {
+    const stored = loadConsent();
+    // Un consentimiento aceptado con una version anterior del texto no vale.
+    return stored.granted && stored.version !== CONSENT_VERSION ? { granted: false } : stored;
+  });
   const [profile] = useState(() => loadProfile());
   const [modalOpen, setModalOpen] = useState(false);
   const [authorise, setAuthorise] = useState(false);
@@ -44,6 +48,8 @@ export const ReportsScreen = () => {
   }, [answers, completedAt, history, selectedHistoryId]);
 
   const hasResult = answers.length > 0 || history.length > 0;
+  // Control de acceso: con Firebase configurado exigimos una sesion identificada.
+  const needsLogin = mode === 'firebase' && !isAuthenticated;
 
   const downloadPersonal = () => {
     if (!result) return;
@@ -57,7 +63,7 @@ export const ReportsScreen = () => {
   };
 
   const downloadHR = () => {
-    if (!result) return;
+    if (!result || !consent.granted || needsLogin) return;
     setBusy('hr');
     try {
       const blob = generateHRReport(result, {
@@ -180,7 +186,9 @@ export const ReportsScreen = () => {
           <div className="max-w-xl">
             <div className="mb-2 flex flex-wrap items-center gap-2">
               <Badge tone="violet">Informe profesional</Badge>
-              {consent.granted ? (
+              {needsLogin ? (
+                <Badge tone="amber">Requiere sesión</Badge>
+              ) : consent.granted ? (
                 <Badge tone="emerald">Consentimiento activo</Badge>
               ) : (
                 <Badge tone="amber">Requiere consentimiento</Badge>
@@ -200,7 +208,17 @@ export const ReportsScreen = () => {
               </p>
             ) : null}
           </div>
-          {consent.granted ? (
+          {needsLogin ? (
+            <div className="flex max-w-xs flex-col gap-2">
+              <Button onClick={() => navigate('auth')}>
+                <Icon name="lock" className="h-4 w-4" />
+                Inicia sesión para desbloquear
+              </Button>
+              <p className="text-xs leading-relaxed text-slate-500">
+                El informe profesional exige una sesión identificada y tu consentimiento explícito.
+              </p>
+            </div>
+          ) : consent.granted ? (
             <div className="flex flex-col gap-2">
               <Button onClick={downloadHR} disabled={busy !== null}>
                 <Icon name="download" className="h-4 w-4" />
@@ -239,7 +257,13 @@ export const ReportsScreen = () => {
           Has iniciado sesión en este dispositivo. La autorización para el informe profesional
           combina la confirmación explícita con la identidad de la sesión.
         </Alert>
-      ) : null}
+      ) : (
+        <Alert tone="warning" title="Sesión no identificada">
+          Para desbloquear el informe profesional necesitas iniciar sesión con Firebase
+          Authentication. La evaluación y el informe personal siguen funcionando sin cuenta: la
+          identificación solo protege el documento que está pensado para compartir con una empresa.
+        </Alert>
+      )}
 
       <Card>
         <CardTitle subtitle="Documentos cortos que explican qué hace y qué no hace esta aplicación.">

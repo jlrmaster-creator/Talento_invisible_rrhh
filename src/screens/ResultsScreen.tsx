@@ -17,7 +17,7 @@ import { loadProfile } from '../storage/localStorage';
 
 export const ResultsScreen = () => {
   const { navigate } = useNavigate();
-  const { map, answers, completedAt, saveCurrent } = useAssessment();
+  const { map, answers, completedAt, saveCurrent, deleteCurrent } = useAssessment();
   const [showMethod, setShowMethod] = useState(false);
   const [profile] = useState(() => loadProfile());
 
@@ -267,11 +267,13 @@ export const ResultsScreen = () => {
           variant="secondary"
           size="lg"
           onClick={() => {
+            // Guarda el resultado en el historial y empieza un cuestionario limpio.
             saveCurrent();
+            deleteCurrent();
             navigate('assessment');
           }}
         >
-          Repetir la evaluacion
+          Repetir la evaluación
         </Button>
       </div>
     </div>

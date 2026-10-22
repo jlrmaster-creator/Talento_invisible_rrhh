@@ -111,6 +111,11 @@ VITE_FIREBASE_APP_ID=1:000000000000:web:xxxxxxxxxxxx
 > Estos datos son **públicos por diseño**. La clave de API de Firebase identifica el proyecto, no
 > autoriza operaciones. Nunca pongas en el frontend claves privadas, credenciales de servicio ni
 > secretos. `.env.local` está en `.gitignore` y **no se sube al repositorio**.
+>
+> Para el despliegue, el repositorio incluye `.env.production` con la configuración pública del
+> proyecto de demostración. Vite lo carga automáticamente al ejecutar `npm run build`, así que
+> GitHub Actions no necesita secretos ni variables adicionales. Si usas otro proyecto de Firebase,
+> edita ese archivo (o sobrescribe las variables en el entorno de compilación).
 
 ### 3. Activar los proveedores de acceso
 
@@ -356,6 +361,12 @@ git push -u origin main
 
 1. En el repositorio: **Settings → Pages**.
 2. En **Build and deployment → Source**, elige **GitHub Actions**.
+
+> **Hazlo antes del primer despliegue.** Mientras Pages no esté activado, el paso
+> `Setup Pages` del workflow falla. Si ya se ejecutó y falló, actívalo y vuelve a lanzar el
+> workflow desde **Actions → Deploy to GitHub Pages → Re-run all jobs** (o haz un `push` nuevo).
+> El workflow no puede activar Pages por sí solo porque `GITHUB_TOKEN` no tiene permisos de
+> administración.
 
 ### 3. El workflow ya está incluido
 

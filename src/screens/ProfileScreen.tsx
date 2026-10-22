@@ -35,8 +35,15 @@ const SECTORS = [
 export const ProfileScreen = () => {
   const { navigate } = useNavigate();
   const { user, isAuthenticated, signOut, mode } = useAuth();
-  const { history, deleteFromHistory, clearAllHistory, deleteCurrent, answers, loadDemo } =
-    useAssessment();
+  const {
+    history,
+    deleteFromHistory,
+    clearAllHistory,
+    deleteCurrent,
+    restoreFrom,
+    answers,
+    loadDemo,
+  } = useAssessment();
 
   const [profile, setProfile] = useState<StoredProfile | null>(() => loadProfile());
   const [displayName, setDisplayName] = useState(profile?.displayName ?? '');
@@ -262,7 +269,7 @@ export const ProfileScreen = () => {
                     size="sm"
                     variant="secondary"
                     onClick={() => {
-                      deleteFromHistory(entry.id);
+                      restoreFrom(entry);
                       navigate('results');
                     }}
                   >
