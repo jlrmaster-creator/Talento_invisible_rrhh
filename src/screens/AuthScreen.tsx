@@ -26,7 +26,7 @@ export const AuthScreen = () => {
     return (
       <div className="mx-auto max-w-lg space-y-6">
         <Card>
-          <CardTitle subtitle="Tu sesion esta activa">Sesion iniciada</CardTitle>
+          <CardTitle subtitle="Tu sesión esta activa">Sesión iniciada</CardTitle>
           <div className="rounded-xl bg-slate-50 p-4">
             <p className="text-sm font-medium text-slate-900">
               {profile?.displayName || user?.displayName || 'Cuenta sin nombre'}
@@ -34,7 +34,7 @@ export const AuthScreen = () => {
             <p className="text-sm text-slate-600">{user?.email}</p>
           </div>
           <div className="mt-5 flex flex-col gap-2 sm:flex-row">
-            <Button onClick={() => navigate('assessment')}>Ir a la evaluacion</Button>
+            <Button onClick={() => navigate('assessment')}>Ir a la evaluación</Button>
             <Button variant="secondary" onClick={() => navigate('profile')}>
               Ver mi perfil
             </Button>
@@ -89,8 +89,8 @@ export const AuthScreen = () => {
 
       {authMode === 'local' ? (
         <Alert tone="warning" title="Identidad no disponible en este entorno">
-          Este despliegue no tiene configurado Firebase Authentication, asi que el registro no
-          funcionara. La evaluacion y los informes siguen siendo utilizables sin identificarse.
+          Este despliegue no tiene configurado Firebase Authentication, así que el registro no
+          funcionará. La evaluación y los informes siguen siendo utilizables sin identificarse.
         </Alert>
       ) : null}
 
@@ -122,19 +122,19 @@ export const AuthScreen = () => {
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           {tab === 'signup' ? (
-            <Field label="Nombre (opcional)" htmlFor="displayName" hint="Solo se usa dentro de la aplicacion.">
+            <Field label="Nombre (opcional)" htmlFor="displayName" hint="Solo se usa dentro de la aplicación.">
               <TextInput
                 id="displayName"
                 name="name"
                 autoComplete="name"
                 value={displayName}
                 onChange={(event) => setDisplayName(event.target.value)}
-                placeholder="Como quieres que te llamen"
+                placeholder="Cómo quieres que te llamen"
               />
             </Field>
           ) : null}
 
-          <Field label="Correo electronico" htmlFor="email">
+          <Field label="Correo electrónico" htmlFor="email">
             <TextInput
               id="email"
               type="email"
@@ -150,7 +150,7 @@ export const AuthScreen = () => {
           <Field
             label="Contrasena"
             htmlFor="password"
-            hint={tab === 'signup' ? 'Minimo 6 caracteres.' : undefined}
+            hint={tab === 'signup' ? 'Mínimo 6 caracteres.' : undefined}
           >
             <TextInput
               id="password"
@@ -189,7 +189,7 @@ export const AuthScreen = () => {
 
         <p className="mt-4 text-xs leading-relaxed text-slate-500">
           Al identificarte aceptas que se guarde tu correo en Firebase Authentication. Tus
-          respuestas a la evaluacion no salen de este dispositivo.
+          respuestas a la evaluación no salen de este dispositivo.
         </p>
       </Card>
     </div>

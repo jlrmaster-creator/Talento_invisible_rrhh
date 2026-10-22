@@ -7,7 +7,7 @@
  *
  * Tipos admitidos:
  *  - `scale`: escala numérica (por ejemplo 1..5). Los pesos son los mismos para
- *    todos los valores de la escala; el punto awarded se escala según el valor.
+ *    todos los valores de la escala; el valor obtenido se escala según la respuesta.
  *  - `choice`: opciones con pesos propios. Cada opción declara qué competencias
  *    evidencia esa manera de actuar (puede ser 0 para una competencia concreta).
  *
@@ -61,7 +61,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'q01',
     type: 'scale',
-    title: 'Cuando te enfronas a un problema que no conoces, ¿qué haces primero?',
+    title: 'Cuando te enfrentas a un problema que no conoces, ¿qué haces primero?',
     help: 'Piensa en la última vez que algo no salió como estaba previsto.',
     focus: ['problemSolving', 'adaptability'],
     importance: 1.2,
@@ -191,13 +191,13 @@ export const QUESTIONS: Question[] = [
       {
         value: 'c',
         label: 'Le indico las causas y le recuerdo que el proceso ya estaba comunicado',
-        note: 'Justifica la situación ante la reclamo.',
+        note: 'Justifica la situación ante la reclamación.',
         weights: { communication: 0.5, customerOrientation: 0.2, attentionToDetail: 0.2 },
       },
       {
         value: 'd',
         label: 'Le paso el caso a otra persona porque no me corresponde gestionarlo',
-        note: 'Traslaza la conversación a una tercera persona.',
+        note: 'Traslada la conversación a una tercera persona.',
         weights: { collaboration: 0.3, communication: 0.2 },
       },
     ],
@@ -285,7 +285,7 @@ export const QUESTIONS: Question[] = [
       {
         value: 'a',
         label:
-          'Organizé horarios, dinero y personas; además busqué formas más sencillas de hacerlo y fui ajustando sobre la marcha',
+          'Organicé horarios, dinero y personas; además busqué formas más sencillas de hacerlo y fui ajustando sobre la marcha',
         note: 'Gestión autónoma con búsqueda de soluciones prácticas.',
         weights: {
           planning: 1,

@@ -39,8 +39,8 @@ export const CompetencyCard = ({
       </div>
 
       <p className="mt-2 text-xs text-slate-500">
-        Confianza orientativa: {Math.round(score.confidence * 100)}% · {score.evidenceCount}{' '}
-        {score.evidenceCount === 1 ? 'pregunta' : 'preguntas'} informants
+        Confianza orientativa: {Math.round(score.confidence * 100)}% · basada en{' '}
+        {score.evidenceCount} {score.evidenceCount === 1 ? 'pregunta' : 'preguntas'}
       </p>
 
       {showEvidence && evidence.length > 0 ? (

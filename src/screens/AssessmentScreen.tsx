@@ -160,7 +160,7 @@ export const AssessmentScreen = () => {
       <div className="flex items-center justify-between gap-3">
         <Button variant="ghost" onClick={handleBack}>
           <Icon name="arrowLeft" className="h-4 w-4" />
-          {currentIndex === 0 ? 'Salir' : 'Atras'}
+          {currentIndex === 0 ? 'Salir' : 'Atrás'}
         </Button>
         <Button onClick={handleNext} disabled={currentValue === undefined} size="lg">
           {isLast ? 'Ver mi mapa de talento' : 'Continuar'}
@@ -170,7 +170,7 @@ export const AssessmentScreen = () => {
 
       {hasCompleted ? (
         <p className="text-center text-xs text-slate-500">
-          Ya tienes una evaluacion completada. Al terminar esta podras compararla con la nueva.
+          Ya tienes una evaluación completada. Al terminar esta podrás compararla con la nueva.
         </p>
       ) : null}
 
@@ -183,9 +183,9 @@ export const AssessmentScreen = () => {
             onClick={() => setShowExit(false)}
           />
           <div className="relative z-10 w-full max-w-sm rounded-t-3xl bg-white p-6 shadow-xl sm:rounded-2xl">
-            <h2 className="text-lg font-semibold text-slate-900">¿Salir de la evaluacion?</h2>
+            <h2 className="text-lg font-semibold text-slate-900">¿Salir de la evaluación?</h2>
             <p className="mt-2 text-sm leading-relaxed text-slate-600">
-              Lo que ya has respondido se guarda en este dispositivo, asi que podras continuar
+              Lo que ya has respondido se guarda en este dispositivo, así que podrás continuar
               cuando quieras.
             </p>
             <div className="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">

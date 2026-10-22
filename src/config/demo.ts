@@ -2,8 +2,8 @@
  * Datos de demostracion ficticios.
  *
  * Perfil de una persona imaginaria: "Marta", que ha trabajado siempre en
- * cuidados y atencion al cliente y llega al cuestionario con mucha
- * experiencia de vida pero sin titulos Shell. Sirve para probar la aplicacion
+ * cuidados y atención al cliente y llega al cuestionario con mucha
+ * experiencia de vida pero sin títulos formales. Sirve para probar la aplicacion
  * sin tener que responder las 15 preguntas.
  *
  * Ninguno de estos datos es real.

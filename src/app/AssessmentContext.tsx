@@ -1,8 +1,8 @@
 /**
- * Estado de la evaluacion en la aplicacion.
+ * Estado de la evaluación en la aplicacion.
  *
  * Mantiene las respuestas en curso, el resultado calculado y el historial
- * guardado en el dispositivo. La logica de calculo vive en `engine/`, aqui
+ * guardado en el dispositivo. La logica de calculo vive en `engine/`, aquí
  * solo se orquestan las llamadas y la persistencia.
  */
 
@@ -73,7 +73,7 @@ export const AssessmentProvider = ({ children }: { children: ReactNode }) => {
   const [completedAt, setCompletedAt] = useState<string | null>(null);
   const [history, setHistory] = useState<StoredAssessment[]>(() => loadHistory());
 
-  // Restaura la evaluacion en curso al abrir la aplicacion.
+  // Restaura la evaluación en curso al abrir la aplicacion.
   useEffect(() => {
     const stored = loadCurrentAssessment();
     if (stored && Array.isArray(stored.answers)) {

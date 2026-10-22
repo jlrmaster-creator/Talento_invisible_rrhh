@@ -1,5 +1,5 @@
 /**
- * Tipos del dominio de evaluacion.
+ * Tipos del dominio de evaluación.
  *
  * Son deliberadamente planos y serializables: el mismo objeto se puede
  * guardar en localStorage, enviar a un informe PDF o comparar en pruebas.
@@ -30,7 +30,7 @@ export interface CompetencyScore {
   shortName: string;
   color: string;
   softColor: string;
-  /** Puntuacion final 0..100 (ya contraida hacia la media). */
+  /** Puntuación final 0..100 (ya contraida hacia la media). */
   score: number;
   /** Ratio bruto 0..1 antes de la contraccion. */
   rawRatio: number;
@@ -38,7 +38,7 @@ export interface CompetencyScore {
   points: number;
   /** Puntos maximos posibles con este cuestionario. */
   maxPoints: number;
-  /** Numero de preguntas respondidas que informaban de esta competencia. */
+  /** Número de preguntas respondidas que informaban de esta competencia. */
   evidenceCount: number;
   /** Confianza orientativa 0..1 segun cuanta evidencia hay. */
   confidence: number;

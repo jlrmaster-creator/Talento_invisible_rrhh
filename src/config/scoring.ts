@@ -10,10 +10,10 @@
  *   maxPuntos   = suma(peso_pregunta * 1 * importancia)   // mejor caso posible
  *   ratio       = puntos / maxPuntos                     // 0..1
  *   shrinkage   = (puntos + priorStrength * priorRatio) / (maxPuntos + priorStrength)
- *   puntuacion  = redondeo(shrinkage * 100)
+ *   puntuación  = redondeo(shrinkage * 100)
  *
  * La contraccion (shrinkage) evita que una competencia explorada por una sola
- * pregunta obtenga una puntuacion extrema. Cuanto menor es maxPuntos, mas se
+ * pregunta obtenga una puntuación extrema. Cuanto menor es maxPuntos, más se
  * acerca el resultado a priorRatio (55 por defecto).
  */
 
@@ -33,21 +33,21 @@ export const LEVELS: LevelDefinition[] = [
   {
     id: 'developing',
     label: 'Por desarrollar',
-    description: 'Zona con mas margen de crecimiento; conviene practicarla.',
+    description: 'Zona con más margen de crecimiento; conviene practicarla.',
     min: 0,
     max: 39,
   },
   {
     id: 'building',
-    label: 'En construccion',
-    description: 'Base existente que todavia se apoya en terceros en situaciones nuevas.',
+    label: 'En construcción',
+    description: 'Base existente que todavía se apoya en terceros en situaciones nuevas.',
     min: 40,
     max: 59,
   },
   {
     id: 'solid',
-    label: 'Competencia solida',
-    description: 'Se sostiene con autonomia en situaciones habituales.',
+    label: 'Competencia sólida',
+    description: 'Se sostiene con autonomía en situaciones habituales.',
     min: 60,
     max: 79,
   },
@@ -61,9 +61,9 @@ export const LEVELS: LevelDefinition[] = [
 ];
 
 export interface BandThresholds {
-  /** A partir de esta puntuacion la competencia se considera fortaleza. */
+  /** A partir de esta puntuación la competencia se considera fortaleza. */
   strength: number;
-  /** Por debajo de esta puntuacion se considera area de desarrollo. */
+  /** Por debajo de esta puntuación se considera área de desarrollo. */
   development: number;
 }
 
@@ -73,11 +73,11 @@ export interface ScoringConfig {
    * Por defecto todas pesan lo mismo.
    */
   competencyWeights: Record<CompetencyId, number>;
-  /** Puntuacion previa (0..1) hacia la que se contraen las competencias con poca evidencia. */
+  /** Puntuación previa (0..1) hacia la que se contraen las competencias con poca evidencia. */
   priorRatio: number;
-  /** Fuerza de la contraccion. Mayor valor = mas prudente con poca evidencia. */
+  /** Fuerza de la contraccion. Mayor valor = más prudente con poca evidencia. */
   priorStrength: number;
-  /** Umbrales para clasificar fortalezas y areas de desarrollo. */
+  /** Umbrales para clasificar fortalezas y áreas de desarrollo. */
   bands: BandThresholds;
   /** Version del cuestionario. Cambia al modificar preguntas o pesos. */
   questionnaireVersion: string;

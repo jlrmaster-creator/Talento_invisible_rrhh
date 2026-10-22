@@ -60,7 +60,7 @@ describe('generacion de informes PDF', () => {
 
   it('el informe profesional se niega a generarse sin consentimiento', () => {
     expect(() => generateHRReport(result, { includeHR: false })).toThrowError(
-      /includeHR=true y consentimiento explicito/,
+      /includeHR=true y consentimiento explícito/,
     );
   });
 

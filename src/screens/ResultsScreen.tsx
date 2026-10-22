@@ -26,9 +26,9 @@ export const ResultsScreen = () => {
       <div className="space-y-6">
         <EmptyState
           icon="📊"
-          title="Todavia no tienes un mapa de talento"
-          description="Completa la evaluacion para ver tus competencias, fortalezas y areas de desarrollo."
-          action={<Button onClick={() => navigate('assessment')}>Empezar la evaluacion</Button>}
+          title="Todavía no tienes un mapa de talento"
+          description="Completa la evaluación para ver tus competencias, fortalezas y áreas de desarrollo."
+          action={<Button onClick={() => navigate('assessment')}>Empezar la evaluación</Button>}
         />
       </div>
     );

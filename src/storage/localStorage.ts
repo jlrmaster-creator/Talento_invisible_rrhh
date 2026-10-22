@@ -30,13 +30,13 @@ export interface StoredProfile {
   displayName?: string;
   headline?: string;
   yearsExperience?: number;
-  /** Sector o area de interes, opcional. */
+  /** Sector o área de interes, opcional. */
   sector?: string;
   updatedAt: string;
 }
 
 export interface StoredConsent {
-  /** Consentimiento explicito para elaborar el informe profesional. */
+  /** Consentimiento explícito para elaborar el informe profesional. */
   granted: boolean;
   grantedAt?: string;
   /** Version del texto de consentimiento acceptance. */
@@ -102,7 +102,7 @@ const touchMeta = () => {
   );
 };
 
-// --- Evaluacion actual ---
+// --- Evaluación actual ---
 
 export const saveCurrentAssessment = (assessment: StoredAssessment): boolean =>
   writeJson(KEYS.assessment, assessment);

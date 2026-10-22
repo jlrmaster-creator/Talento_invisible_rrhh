@@ -1,8 +1,8 @@
 /**
- * Motor de puntuacion determinista.
+ * Motor de puntuación determinista.
  *
  * No interviene ningun modelo de lenguaje ni ninguna llamada de red: el
- * resultado depende unicamente de las respuestas y de la configuracion de
+ * resultado depende unicamente de las respuestas y de la configuración de
  * `config/questions.ts` + `config/scoring.ts`. Dos ejecuciones con las mismas
  * entradas producen exactamente el mismo resultado.
  */
@@ -13,7 +13,7 @@ import { getLevel, SCORING_CONFIG, type ScoringConfig } from '../config/scoring'
 import type { Answer, CompetencyScore, Evidence } from './types';
 
 export interface ScoreOptions {
-  /** Permite calcular con una configuracion distinta sin tocar la global. */
+  /** Permite calcular con una configuración distinta sin tocar la global. */
   config?: ScoringConfig;
   /** Preguntas a usar. Por defecto, el banco completo. */
   questions?: Question[];
@@ -78,7 +78,7 @@ const contributionFor = (
 };
 
 /**
- * Calcula la puntuacion de todas las competencias a partir de las respuestas.
+ * Calcula la puntuación de todas las competencias a partir de las respuestas.
  *
  * @param answers Respuestas del cuestionario. Las respuestas a preguntas
  *                desconocidas o incompletas se ignoran.
@@ -147,7 +147,7 @@ export const scoreAssessment = (
 /**
  * Confianza orientativa: combina quantas preguntas informaban de la
  * competencia y cuanto peso acumulado aportaban. No es una medida
- * estadistica, solo un aviso de cuan solida es la lectura.
+ * estadistica, solo un aviso de cuan sólida es la lectura.
  */
 export const confidenceFor = (evidenceCount: number, maxPoints: number): number => {
   const byQuestions = Math.min(1, evidenceCount / 3);
@@ -173,7 +173,7 @@ export const overallIndex = (
   return clampScore(weighted / totalWeight);
 };
 
-/** Indice de autocompatibilidad: como de lejos esta la parte mas debil del perfil. */
+/** Indice de autocompatibilidad: como de lejos esta la parte más debil del perfil. */
 export const balanceIndex = (scores: CompetencyScore[]): number => {
   if (scores.length === 0) return 0;
   const values = scores.map((score) => score.score);

@@ -17,9 +17,9 @@ import { clearConsent, loadConsent, loadProfile, saveConsent, type StoredConsent
 export const CONSENT_VERSION = '1.0.0';
 
 export const CONSENT_TEXT =
-  'Autorizo la elaboracion del informe profesional para RR. HH. a partir de mis respuestas a la ' +
-  'evaluacion de Talento Invisible. Entiendo que el informe se genera en mi dispositivo, que no ' +
-  'se envia a ninguna empresa de forma automatica y que yo decido si lo comparto y con quien.';
+  'Autorizo la elaboración del informe profesional para RR. HH. a partir de mis respuestas a la ' +
+  'evaluación de Talento Invisible. Entiendo que el informe se genera en mi dispositivo, que no ' +
+  'se envía a ninguna empresa de forma automática y que yo decido si lo comparto y con quién.';
 
 export const ReportsScreen = () => {
   const { navigate } = useNavigate();
@@ -48,7 +48,7 @@ export const ReportsScreen = () => {
   }, [answers, completedAt, history, selectedHistoryId]);
 
   const hasResult = answers.length > 0 || history.length > 0;
-  // Control de acceso: con Firebase configurado exigimos una sesion identificada.
+  // Control de acceso: con Firebase configurado exigimos una sesión identificada.
   const needsLogin = mode === 'firebase' && !isAuthenticated;
 
   const downloadPersonal = () => {
@@ -71,7 +71,7 @@ export const ReportsScreen = () => {
         profile: profile ?? undefined,
         consentText: `${CONSENT_TEXT} (Consentimiento registrado el ${new Date(
           consent.grantedAt ?? Date.now(),
-        ).toLocaleString('es-ES')}, version ${consent.version ?? CONSENT_VERSION}.)`,
+        ).toLocaleString('es-ES')}, versión ${consent.version ?? CONSENT_VERSION}.)`,
       });
       downloadBlob(blob, safeFilename('informe-profesional-rrhh', result.createdAt));
     } finally {

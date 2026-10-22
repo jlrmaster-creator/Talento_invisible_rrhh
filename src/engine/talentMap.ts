@@ -2,7 +2,7 @@
  * Construccion del mapa de talento.
  *
  * Agrupa las competencias puntuadas en fortalezas, habilidades complementarias
- * y areas de desarrollo, y redacta un resumen con plantillas estaticas.
+ * y áreas de desarrollo, y redacta un resumen con plantillas estaticas.
  */
 
 import { SCORING_CONFIG, getLevel, type ScoringConfig } from '../config/scoring';
@@ -26,8 +26,8 @@ export const joinCompetencies = (names: string[]): string => {
  *
  * Los umbrales vienen de `config/scoring.ts`. Cada bloque tiene un tope para
  * que el mapa siga siendo legible, y si un bloque queda vacio se rellena con
- * las competencias mas próximas, de forma que el mapa siempre aporte
- * informacion aunque el perfil sea muy uniforme.
+ * las competencias más próximas, de forma que el mapa siempre aporte
+ * información aunque el perfil sea muy uniforme.
  */
 export const buildTalentMap = (
   scores: CompetencyScore[],
@@ -53,7 +53,7 @@ export const buildTalentMap = (
       : ranking.filter((score) => !taken.has(score.id)).slice(0, 3);
   complementary.forEach((score) => taken.add(score.id));
 
-  // 3. Areas de desarrollo: las del umbral bajo y, si no hay, las mas debiles.
+  // 3. Áreas de desarrollo: las del umbral bajo y, si no hay, las más débiles.
   const developmentCandidates = developmentBand.filter((score) => !taken.has(score.id));
   const development =
     developmentCandidates.length > 0
@@ -90,7 +90,7 @@ export const buildSummary = (
   const parts: string[] = [];
 
   parts.push(
-    `Tu indice de talento visible se situa en ${index} sobre 100, en el nivel ${getLevel(index).label.toLowerCase()}.`,
+    `Tu índice de talento visible se sitúa en ${index} sobre 100, en el nivel ${getLevel(index).label.toLowerCase()}.`,
   );
 
   if (strengthNames.length > 0) {
@@ -101,18 +101,18 @@ export const buildSummary = (
 
   if (complementaryNames.length > 0) {
     parts.push(
-      `Ademas, ${joinCompetencies(complementaryNames)} sostienen y complementan tu perfil, aunque todavia hay recorrido por delante.`,
+      `Además, ${joinCompetencies(complementaryNames)} sostienen y complementan tu perfil, aunque todavía hay recorrido por delante.`,
     );
   }
 
   if (developmentNames.length > 0) {
     parts.push(
-      `El margen de crecimiento mas claro esta en ${joinCompetencies(developmentNames)}.`,
+      `El margen de crecimiento más claro está en ${joinCompetencies(developmentNames)}.`,
     );
   }
 
   parts.push(
-    'Estos resultados son orientativos: se calcula de tus respuestas a un cuestionario breve y describen como has tendido a actuar, no lo que puedes hacer en un puesto concreto.',
+    'Estos resultados son orientativos: se calcula de tus respuestas a un cuestionario breve y describen cómo has tendido a actuar, no lo que puedes hacer en un puesto concreto.',
   );
 
   return parts.join(' ');

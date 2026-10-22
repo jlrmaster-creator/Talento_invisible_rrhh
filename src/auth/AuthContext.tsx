@@ -3,7 +3,7 @@
  *
  * Envuelve Firebase Authentication y expone un estado simple para la interfaz.
  * Cuando Firebase no esta configurado, `mode` vale 'local' y todas las
- * acciones de sesion devuelven un error explicito en lugar de fallar.
+ * acciones de sesión devuelven un error explícito en lugar de fallar.
  */
 
 import {
@@ -47,27 +47,27 @@ const translateError = (error: unknown): string => {
   const code = (error as { code?: string })?.code ?? '';
   switch (code) {
     case 'auth/invalid-email':
-      return 'El correo electronico no tiene un formato valido.';
+      return 'El correo electrónico no tiene un formato válido.';
     case 'auth/missing-password':
-      return 'Introduce una contrasena.';
+      return 'Introduce una contraseña.';
     case 'auth/weak-password':
-      return 'La contrasena debe tener al menos 6 caracteres.';
+      return 'La contraseña debe tener al menos 6 caracteres.';
     case 'auth/email-already-in-use':
-      return 'Ya existe una cuenta con ese correo electronico.';
+      return 'Ya existe una cuenta con ese correo electrónico.';
     case 'auth/user-not-found':
     case 'auth/wrong-password':
     case 'auth/invalid-credential':
-      return 'El correo electronico o la contrasena no son correctos.';
+      return 'El correo electrónico o la contraseña no son correctos.';
     case 'auth/popup-closed-by-user':
-      return 'Has cerrado la ventana de inicio de sesion sin completar.';
+      return 'Has cerrado la ventana de inicio de sesión sin completar.';
     case 'auth/popup-blocked':
-      return 'El navegador ha bloqueado la ventana emergente. Permite las ventanas emergentes e intentalo de nuevo.';
+      return 'El navegador ha bloqueado la ventana emergente. Permite las ventanas emergentes e inténtalo de nuevo.';
     case 'auth/network-request-failed':
-      return 'No se ha podido conectar con el servicio de identificacion. Revisa tu conexion.';
+      return 'No se ha podido conectar con el servicio de identificación. Revisa tu conexión.';
     case 'auth/too-many-requests':
       return 'Demasiados intentos. Espera unos minutos antes de reintentar.';
     case 'auth/operation-not-allowed':
-      return 'El proveedor de correo y contrasena no esta habilitado en la consola de Firebase.';
+      return 'El proveedor de correo y contraseña no está habilitado en la consola de Firebase.';
     default:
       return (error as { message?: string })?.message ?? 'Ha ocurrido un error inesperado.';
   }
@@ -100,7 +100,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const requireAuth = useCallback(() => {
     if (!auth) {
       throw new Error(
-        'Firebase Authentication no esta configurado en este entorno. Anade las variables VITE_FIREBASE_* al archivo .env.local.',
+        'Firebase Authentication no está configurado en este entorno. Añade las variables VITE_FIREBASE_* al archivo .env.local.',
       );
     }
     return auth;

@@ -13,11 +13,11 @@ import { PLAN_INTRO, PLAN_WEEK_TEMPLATES } from '../config/plan';
 import type { AssessmentResult, CompetencyScore } from './types';
 
 export interface PdfOptions {
-  /** Incluir el informe para RRHH (requiere consentimiento explicito). */
+  /** Incluir el informe para RRHH (requiere consentimiento explícito). */
   includeHR?: boolean;
   /** Texto del consentimiento, para dejar constancia. */
   consentText?: string;
-  /** Informacion profesional opcional de la persona participante. */
+  /** Información profesional opcional de la persona participante. */
   profile?: PdfProfile;
 }
 
@@ -128,13 +128,13 @@ export const buildPersonalReportDoc = (result: AssessmentResult, options: PdfOpt
   doc.roundedRect(margin, y, 182, 16, 2, 2, 'F');
   doc.setFontSize(10);
   doc.setTextColor('#111827');
-  doc.text(`Indice de talento visible: ${map.overallIndex}/100 - ${map.overallLevelLabel}`, margin + 4, y + 7);
+  doc.text(`Índice de talento visible: ${map.overallIndex}/100 - ${map.overallLevelLabel}`, margin + 4, y + 7);
   y += 22;
 
   // Principales fortalezas
   y = addCompetencySection(doc, 'Principales fortalezas', map.strengths, margin, y, true);
   y = addCompetencySection(doc, 'Habilidades complementarias', map.complementary, margin, y, true);
-  y = addCompetencySection(doc, 'Areas que se pueden desarrollar', map.development, margin, y, true);
+  y = addCompetencySection(doc, 'Áreas que se pueden desarrollar', map.development, margin, y, true);
 
   // Recomendaciones
   doc.addPage();
@@ -161,10 +161,10 @@ export const buildPersonalReportDoc = (result: AssessmentResult, options: PdfOpt
     y += 4;
     doc.setFontSize(9);
     doc.setTextColor('#374151');
-    const actionLines = doc.splitTextToSize(`Accion: ${rec!.action}`, 174);
+    const actionLines = doc.splitTextToSize(`Acción: ${rec!.action}`, 174);
     doc.text(actionLines, margin + 4, y);
     y += actionLines.length * 4 + 2;
-    const rationaleLines = doc.splitTextToSize(`Por que: ${rec!.rationale}`, 174);
+    const rationaleLines = doc.splitTextToSize(`Por qué: ${rec!.rationale}`, 174);
     doc.text(rationaleLines, margin + 4, y);
     y += rationaleLines.length * 4 + 6;
   }
@@ -222,11 +222,11 @@ export const buildPersonalReportDoc = (result: AssessmentResult, options: PdfOpt
     doc.setFontSize(8);
     doc.setTextColor('#9CA3AF');
     doc.text(
-      'Talento Invisible | MVP sin IA | Datos almacenados localmente | No sustituye un proceso de seleccion',
+      'Talento Invisible | MVP sin IA | Datos almacenados localmente | No sustituye un proceso de selección',
       margin,
       285,
     );
-    doc.text(`Pagina ${i} / ${pageCount}`, 196, 285);
+    doc.text(`Página ${i} / ${pageCount}`, 196, 285);
   }
 
   return doc;
@@ -245,7 +245,7 @@ export const generatePersonalReportBuffer = (
   options: PdfOptions = {},
 ): ArrayBuffer => buildPersonalReportDoc(result, options).output('arraybuffer');
 
-/** Añade una seccion de competencias al PDF. */
+/** Añade una sección de competencias al PDF. */
 const addCompetencySection = (
   doc: jsPDF,
   title: string,
@@ -306,14 +306,14 @@ const addCompetencySection = (
 
 /**
  * Construye el documento del informe profesional para RRHH.
- * Requiere consentimiento explicito segun las especificaciones.
+ * Requiere consentimiento explícito según las especificaciones.
  */
 export const buildHRReportDoc = (
   result: AssessmentResult,
   options: PdfOptions = {},
 ): jsPDF => {
   if (!options.includeHR) {
-    throw new Error('generateHRReport requiere includeHR=true y consentimiento explicito.');
+    throw new Error('generateHRReport requiere includeHR=true y consentimiento explícito.');
   }
 
   const doc = new jsPDF({ unit: 'mm', format: 'a4' });
@@ -353,17 +353,17 @@ export const buildHRReportDoc = (
   y += 5;
   doc.setFontSize(9);
   doc.setTextColor('#374151');
-  doc.text(`Indice de talento visible: ${map.overallIndex}/100 (${map.overallLevelLabel})`, margin, y);
+  doc.text(`Índice de talento visible: ${map.overallIndex}/100 (${map.overallLevelLabel})`, margin, y);
   y += 4;
   doc.text(`Principales fortalezas: ${joinCompetencies(map.strengths.slice(0, 3).map((s) => s.name))}`, margin, y);
   y += 4;
-  doc.text(`Areas a desarrollar (orientativas): ${joinCompetencies(map.development.slice(0, 2).map((s) => s.name))}`, margin, y);
+  doc.text(`Áreas a desarrollar (orientativas): ${joinCompetencies(map.development.slice(0, 2).map((s) => s.name))}`, margin, y);
   y += 10;
 
   // Tabla de competencias
   autoTable(doc, {
     startY: y,
-    head: [['Competencia', 'Puntuacion', 'Nivel', 'Confianza']],
+    head: [['Competencia', 'Puntuación', 'Nivel', 'Confianza']],
     body: map.ranking.map((score) => [
       score.name,
       `${score.score}/100`,
@@ -462,7 +462,7 @@ export const buildHRReportDoc = (
       margin,
       285,
     );
-    doc.text(`Pagina ${i} / ${pageCount}`, 196, 285);
+    doc.text(`Página ${i} / ${pageCount}`, 196, 285);
   }
 
   return doc;
@@ -470,7 +470,7 @@ export const buildHRReportDoc = (
 
 /**
  * Genera el informe profesional para RRHH.
- * Requiere consentimiento explicito segun las especificaciones.
+ * Requiere consentimiento explícito según las especificaciones.
  */
 export const generateHRReport = (result: AssessmentResult, options: PdfOptions = {}): Blob =>
   buildHRReportDoc(result, options).output('blob');

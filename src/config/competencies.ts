@@ -41,7 +41,7 @@ export const COMPETENCIES: Record<CompetencyId, Competency> = {
     name: 'Resolución de problemas',
     shortName: 'Problemas',
     description:
-      'Enfrentarse a situations nuevas, buscar causas y llegar a una solución viable.',
+      'Enfrentarse a situaciones nuevas, buscar causas y llegar a una solución viable.',
     color: '#4F46E5',
     softColor: '#EEF2FF',
   },
@@ -122,7 +122,7 @@ export const COMPETENCIES: Record<CompetencyId, Competency> = {
     name: 'Creatividad práctica',
     shortName: 'Creatividad',
     description:
-      'Encontrar soluciones sencillos y aplicables con los recursos que hay.',
+      'Encontrar soluciones sencillas y aplicables con los recursos que hay.',
     color: '#9333EA',
     softColor: '#FAF5FF',
   },

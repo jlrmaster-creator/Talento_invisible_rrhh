@@ -67,7 +67,7 @@ export const HomeScreen = () => {
           {
             icon: 'chart' as const,
             title: 'Recibe un mapa, no una etiqueta',
-            body: 'Diez competencias con nivel orientativo, evidencia concreta y areas de mejora.',
+            body: 'Diez competencias con nivel orientativo, evidencia concreta y áreas de mejora.',
           },
           {
             icon: 'file' as const,
@@ -91,8 +91,8 @@ export const HomeScreen = () => {
           {[
             {
               step: '01',
-              title: 'Registrate',
-              body: 'Con correo y contraseña o con Google. Solo se usa Firebase Authentication.',
+              title: 'Empieza la evaluación',
+              body: 'Responde a 15 preguntas. Puedes identificarte con correo, contraseña o Google, pero no es obligatorio.',
             },
             {
               step: '02',
@@ -123,7 +123,7 @@ export const HomeScreen = () => {
             </p>
           </div>
           <Button onClick={() => navigate('auth')}>
-            {user ? 'Ver mi sesion' : 'Entrar o registrarme'}
+            {user ? 'Ver mi sesión' : 'Entrar o registrarme'}
             <Icon name="arrowRight" className="h-4 w-4" />
           </Button>
         </Card>

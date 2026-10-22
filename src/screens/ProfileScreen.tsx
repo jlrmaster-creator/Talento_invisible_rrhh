@@ -148,7 +148,7 @@ export const ProfileScreen = () => {
               id="profile-name"
               value={displayName}
               onChange={(event) => setDisplayName(event.target.value)}
-              placeholder="Como quieres aparecer en el informe"
+              placeholder="Cómo quieres aparecer en el informe"
               maxLength={80}
             />
           </Field>
