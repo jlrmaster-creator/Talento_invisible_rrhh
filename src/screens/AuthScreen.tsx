@@ -29,7 +29,7 @@ export const AuthScreen = () => {
           <CardTitle subtitle="Tu sesión esta activa">Sesión iniciada</CardTitle>
           <div className="rounded-xl bg-slate-50 p-4">
             <p className="text-sm font-medium text-slate-900">
-              {profile?.displayName || user?.displayName || 'Cuenta sin nombre'}
+              {profile?.displayName || user?.displayName || displayName || 'Cuenta sin nombre'}
             </p>
             <p className="text-sm text-slate-600">{user?.email}</p>
           </div>

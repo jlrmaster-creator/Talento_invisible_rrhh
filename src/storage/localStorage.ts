@@ -13,6 +13,7 @@ const STORAGE_PREFIX = 'ti.v1';
 
 const KEYS = {
   assessment: `${STORAGE_PREFIX}.assessment`,
+  progress: `${STORAGE_PREFIX}.progress`,
   history: `${STORAGE_PREFIX}.history`,
   profile: `${STORAGE_PREFIX}.profile`,
   consent: `${STORAGE_PREFIX}.consent`,
@@ -111,6 +112,21 @@ export const loadCurrentAssessment = (): StoredAssessment | null =>
   readJson<StoredAssessment | null>(KEYS.assessment, null);
 
 export const clearCurrentAssessment = () => removeKey(KEYS.assessment);
+
+// --- Progreso en curso ---
+
+/**
+ * Guarda las respuestas de una evaluacion sin terminar.
+ *
+ * Se mantiene separado de la evaluacion actual para no confundir un
+ * cuestionario a medias con un resultado completo del historial.
+ */
+export const saveProgress = (answers: Answer[]): boolean =>
+  writeJson(KEYS.progress, answers);
+
+export const loadProgress = (): Answer[] => readJson<Answer[]>(KEYS.progress, []);
+
+export const clearProgress = () => removeKey(KEYS.progress);
 
 // --- Historial ---
 

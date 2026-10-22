@@ -4,16 +4,19 @@ import {
   clearAllData,
   clearConsent,
   clearCurrentAssessment,
+  clearProgress,
   estimateStorageBytes,
   formatBytes,
   loadConsent,
   loadCurrentAssessment,
   loadHistory,
   loadProfile,
+  loadProgress,
   removeFromHistory,
   saveConsent,
   saveCurrentAssessment,
   saveProfile,
+  saveProgress,
   type StoredAssessment,
 } from './localStorage';
 import { bestAnswers } from '../test/fixtures';
@@ -31,6 +34,13 @@ describe('persistencia local', () => {
     expect(loadCurrentAssessment()?.id).toBe('eval-test');
     clearCurrentAssessment();
     expect(loadCurrentAssessment()).toBeNull();
+  });
+
+  it('guarda y recupera el progreso en curso', () => {
+    saveProgress(bestAnswers().slice(0, 4));
+    expect(loadProgress()).toHaveLength(4);
+    clearProgress();
+    expect(loadProgress()).toHaveLength(0);
   });
 
   it('añade al historial y lo limita a 10 entradas', () => {
@@ -66,11 +76,13 @@ describe('persistencia local', () => {
 
   it('borra todos los datos de la aplicacion', () => {
     saveCurrentAssessment(entry);
+    saveProgress(bestAnswers().slice(0, 3));
     addToHistory(entry);
     saveProfile({ displayName: 'Ana' });
     saveConsent({ granted: true });
     clearAllData();
     expect(loadCurrentAssessment()).toBeNull();
+    expect(loadProgress()).toHaveLength(0);
     expect(loadHistory()).toHaveLength(0);
     expect(loadProfile()).toBeNull();
     expect(loadConsent().granted).toBe(false);

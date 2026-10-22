@@ -25,10 +25,13 @@ import {
   addToHistory,
   clearCurrentAssessment,
   clearHistory,
+  clearProgress,
   loadCurrentAssessment,
   loadHistory,
+  loadProgress,
   removeFromHistory,
   saveCurrentAssessment,
+  saveProgress,
   saveProfile,
   type StoredAssessment,
 } from '../storage/localStorage';
@@ -73,8 +76,19 @@ export const AssessmentProvider = ({ children }: { children: ReactNode }) => {
   const [completedAt, setCompletedAt] = useState<string | null>(null);
   const [history, setHistory] = useState<StoredAssessment[]>(() => loadHistory());
 
-  // Restaura la evaluación en curso al abrir la aplicacion.
+  // Restaura el progreso en curso o el ultimo resultado guardado.
   useEffect(() => {
+    const progress = loadProgress();
+    if (progress.length > 0) {
+      setAnswers(progress);
+      setCompletedAt(null);
+      const pending = QUESTIONS.findIndex(
+        (question) => !progress.some((answer) => answer.questionId === question.id),
+      );
+      if (pending > 0) setCurrentIndex(pending);
+      return;
+    }
+
     const stored = loadCurrentAssessment();
     if (stored && Array.isArray(stored.answers)) {
       setAnswers(stored.answers);
@@ -87,7 +101,15 @@ export const AssessmentProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
+  // Guarda el progreso para poder continuar tras recargar o cerrar la app.
+  useEffect(() => {
+    if (answers.length === 0 || completedAt) return;
+    saveProgress(answers);
+  }, [answers, completedAt]);
+
   const setAnswer = useCallback((questionId: string, value: number | string) => {
+    // Cambiar una respuesta convierte el resultado guardado en progreso nuevo.
+    setCompletedAt(null);
     setAnswers((current) => {
       const existing = current.find((answer) => answer.questionId === questionId);
       if (existing && existing.value === value) return current;
@@ -122,10 +144,12 @@ export const AssessmentProvider = ({ children }: { children: ReactNode }) => {
     saveCurrentAssessment(entry);
     setHistory(addToHistory(entry));
     setCompletedAt(now);
+    clearProgress();
   }, [answers]);
 
   const deleteCurrent = useCallback(() => {
     clearCurrentAssessment();
+    clearProgress();
     setAnswers([]);
     setCompletedAt(null);
     setCurrentIndex(0);
@@ -143,14 +167,17 @@ export const AssessmentProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const startOver = useCallback(() => {
+    clearProgress();
     setAnswers([]);
     setCompletedAt(null);
     setCurrentIndex(0);
   }, []);
 
   const restoreFrom = useCallback((entry: StoredAssessment) => {
+    clearProgress();
     setAnswers(entry.answers);
     setCompletedAt(entry.completedAt);
+    setCurrentIndex(0);
   }, []);
 
   const loadDemo = useCallback(() => {
@@ -172,6 +199,7 @@ export const AssessmentProvider = ({ children }: { children: ReactNode }) => {
     };
     saveCurrentAssessment(entry);
     setHistory(addToHistory(entry));
+    clearProgress();
   }, []);
 
   const value = useMemo<AssessmentContextValue>(

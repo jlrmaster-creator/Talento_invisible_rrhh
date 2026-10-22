@@ -129,7 +129,7 @@ export const AssessmentScreen = () => {
           <span className="font-medium text-slate-700">
             Pregunta {currentIndex + 1} de {QUESTIONS.length}
           </span>
-          <span className="text-slate-500">{answeredCount} respondidas</span>
+          <span className="text-slate-500">Respondidas: {answeredCount}</span>
         </div>
         <ProgressBar value={currentIndex + 1} max={QUESTIONS.length} color="#4F46E5" />
       </div>
