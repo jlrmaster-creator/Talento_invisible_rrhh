@@ -67,7 +67,11 @@ const translateError = (error: unknown): string => {
     case 'auth/too-many-requests':
       return 'Demasiados intentos. Espera unos minutos antes de reintentar.';
     case 'auth/operation-not-allowed':
-      return 'El proveedor de correo y contraseña no está habilitado en la consola de Firebase.';
+      return 'Ese método de acceso no está habilitado en la consola de Firebase (Authentication → Sign-in method).';
+    case 'auth/unauthorized-domain':
+      return 'Este dominio no está autorizado en Firebase Authentication. Añádelo en Authentication → Settings → Authorized domains.';
+    case 'auth/account-exists-with-different-credential':
+      return 'Ya existe una cuenta con ese correo electrónico usando otro método de acceso.';
     default:
       return (error as { message?: string })?.message ?? 'Ha ocurrido un error inesperado.';
   }
